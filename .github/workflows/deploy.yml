@@ -5,10 +5,10 @@ name: CI-CD notification
 on:
   push:
     branches: [main]
-    paths: ["services/notification/**", "services/common/**", "services/requirements.txt", "services/Dockerfile", ".github/workflows/notification.yml"]
+    paths: ["notification/**", "common/**", "requirements.txt", "Dockerfile", ".github/workflows/deploy.yml"]
   pull_request:
     branches: [main]
-    paths: ["services/notification/**", "services/common/**", "services/requirements.txt", "services/Dockerfile"]
+    paths: ["notification/**", "common/**", "requirements.txt", "Dockerfile"]
   workflow_dispatch:
 
 permissions:
@@ -20,9 +20,9 @@ jobs:
     uses: Kevinso4/logitrack-pipelines/.github/workflows/ci.yml@main
     with:
       service-name: notification
-      directorio: services
-      imagen: ghcr.io/kevinso4/tracklogi-notification
-      desplegar: false
+      directorio: "."
+      imagen: ghcr.io/kevinso4/logitrack-notification
+      desplegar: true
       url: https://tracklogi-notification.onrender.com
       render-service-id: srv-db7bqh8473hc73cpki30
     secrets: inherit
